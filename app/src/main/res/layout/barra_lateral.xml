@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/bg_barralateral">
+
+    <!-- Botón Usuario -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Usuario"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
+        app:cornerRadius="16dp"
+        app:backgroundTint="@color/darkGreen"/>
+
+    <!-- Botón Cultivos -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCultivos"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Cultivos"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
+        app:cornerRadius="16dp"
+        app:backgroundTint="@color/darkGreen"/>
+
+    <!-- Botón Sensores -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSensores"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Sensores"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
+        app:cornerRadius="16dp"
+        app:backgroundTint="@color/darkGreen"/>
+
+    <!-- Botón Alertas -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAlertas"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Alertas"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
+        app:cornerRadius="16dp"
+        app:backgroundTint="@color/darkGreen"/>
+
+</LinearLayout>
