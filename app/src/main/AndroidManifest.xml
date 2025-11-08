@@ -18,7 +18,10 @@
 
         <!-- 🌱 Dashboard principal de la app -->
         <activity
-            android:name=".MainActivity"
+            android:name=".Login"
+            android:exported="false" />
+        <activity
+            android:name=".SplashScreen"
             android:exported="true">
 
             <!-- 👇 Esto hace que MainActivity se abra al iniciar la app -->

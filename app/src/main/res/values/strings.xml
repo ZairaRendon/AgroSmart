@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AgroSmart</string>
+    <string name="bienvenida">Bienvenido(a)</string>
 </resources>
