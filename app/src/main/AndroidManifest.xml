@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Permisos opcionales (agrega más luego si usas internet o sensores) -->
+    <!-- 🌐 Permisos -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -16,20 +16,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AgroSmart">
 
-        <!-- 🌱 Dashboard principal de la app -->
-        <activity
-            android:name=".Login"
-            android:exported="false" />
+        <!-- 🟢 Pantalla inicial -->
         <activity
             android:name=".SplashScreen"
             android:exported="true">
-
-            <!-- 👇 Esto hace que MainActivity se abra al iniciar la app -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <activity
+            android:name=".Login"
+            android:exported="true" />
+
+
+        <activity
+            android:name=".Dashboard"
+            android:exported="true" />
+
+
+
+        <activity
+            android:name=".Registro"
+            android:exported="true" />
+
+
+
 
     </application>
 
