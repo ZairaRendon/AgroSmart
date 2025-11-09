@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="@drawable/bg_reportes">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/txtTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Módulo de Reportes"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#F5C9B0"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Selección de rango de fechas -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Seleccione el rango de fechas"
+            android:textSize="16sp"
+            android:textColor="#FFFFFFFF"
+            android:layout_marginBottom="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnFechaInicio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Fecha inicio"
+                android:backgroundTint="@color/lightGreen"
+                android:textColor="#FFFFFFFF"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/btnFechaFin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Fecha fin"
+                android:backgroundTint="@color/lightGreen"
+                android:textColor="#FFFFFFFF" />
+        </LinearLayout>
+
+        <!-- Tipo de reporte -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Seleccione el tipo de reporte"
+            android:textSize="16sp"
+            android:textColor="#FF000000"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp" />
+
+        <RadioGroup
+            android:id="@+id/radioTipoReporte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="30dp">
+
+            <RadioButton
+                android:id="@+id/rbAgua"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Consumo de agua"
+                android:textColor="#FFFFFFFF" />
+
+            <RadioButton
+                android:id="@+id/rbFertilizantes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Consumo de fertilizantes"
+                android:textColor="#FFFFFFFF" />
+
+            <RadioButton
+                android:id="@+id/rbAlertas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alertas recibidas"
+                android:textColor="#FFFFFFFF" />
+        </RadioGroup>
+
+        <!-- Botones de acción (uno debajo del otro) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="12dp">
+
+            <Button
+                android:id="@+id/btnGenerarPDF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Generar PDF"
+                android:backgroundTint="@color/darkGreen"
+                android:textColor="@color/white"
+                android:layout_marginBottom="12dp"
+                android:padding="12dp" />
+
+            <Button
+                android:id="@+id/btnExportarExcel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Exportar a Excel"
+                android:backgroundTint="@color/darkGreen"
+                android:textColor="@color/white"
+                android:layout_marginBottom="12dp"
+                android:padding="12dp" />
+
+            <Button
+                android:id="@+id/btnCompartir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Compartir reporte"
+                android:backgroundTint="@color/darkGreen"
+                android:textColor="@color/white"
+                android:padding="12dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

@@ -2,23 +2,72 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:layout_width="250dp"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
     android:background="@drawable/bg_barralateral">
 
-    <!-- Botón Usuario -->
+    <ImageView
+        android:id="@+id/imgUsuario"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/usuario"
+        android:scaleType="centerCrop"
+        android:background="@drawable/boton_redondo"
+        android:padding="4dp"
+    />
+
+    <!-- Botón Cuenta -->
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnUsuario"
+        android:id="@+id/btnCuenta"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="Usuario"
+        android:text="Cuenta"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+
+        android:layout_marginBottom="16dp"
+        app:cornerRadius="16dp"
+        app:backgroundTint="@color/lightGreen"/>
+
+    <!-- Botón Sensores -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSensores"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Sensores"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+
+        android:layout_marginBottom="16dp"
+        app:cornerRadius="16dp"
+        app:backgroundTint="@color/lightGreen"/>
+
+    <!-- Botón Predicciones -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPredicciones"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Predicciones"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:layout_marginBottom="16dp"
         app:cornerRadius="16dp"
-        app:backgroundTint="@color/darkGreen"/>
+        app:backgroundTint="@color/lightGreen"/>
+
+    <!-- Botón Recursos -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnRecursos"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Recursos"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
+        app:cornerRadius="16dp"
+        app:backgroundTint="@color/lightGreen"/>
 
     <!-- Botón Cultivos -->
     <com.google.android.material.button.MaterialButton
@@ -30,30 +79,18 @@
         android:textSize="16sp"
         android:layout_marginBottom="16dp"
         app:cornerRadius="16dp"
-        app:backgroundTint="@color/darkGreen"/>
+        app:backgroundTint="@color/lightGreen"/>
 
-    <!-- Botón Sensores -->
+    <!-- Botón Reportes -->
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnSensores"
+        android:id="@+id/btnReportes"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="Sensores"
+        android:text="Reportes"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:layout_marginBottom="16dp"
         app:cornerRadius="16dp"
-        app:backgroundTint="@color/darkGreen"/>
-
-    <!-- Botón Alertas -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnAlertas"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="Alertas"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:layout_marginBottom="16dp"
-        app:cornerRadius="16dp"
-        app:backgroundTint="@color/darkGreen"/>
+        app:backgroundTint="@color/lightGreen"/>
 
 </LinearLayout>
