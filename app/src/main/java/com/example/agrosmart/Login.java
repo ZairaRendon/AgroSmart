@@ -1,6 +1,7 @@
 package com.example.agrosmart;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -28,9 +29,26 @@ public class Login extends AppCompatActivity {
 
     private final OkHttpClient client = new OkHttpClient();
 
+    // SharedPreferences para manejar la sesión
+    private SharedPreferences sharedPreferences;
+    private static final String PREFS_NAME = "AgroSmartPrefs";
+    private static final String KEY_IS_LOGGED_IN = "isLoggedIn";
+    private static final String KEY_ACCESS_TOKEN = "accessToken";
+    private static final String KEY_USER_EMAIL = "userEmail";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Inicializar SharedPreferences
+        sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+
+        // Verificar si el usuario ya está logueado
+        if (isUserLoggedIn()) {
+            navigateToDashboard();
+            return;
+        }
+
         setContentView(R.layout.activity_login);
 
         usernameEditText = findViewById(R.id.username);
@@ -114,10 +132,13 @@ public class Login extends AppCompatActivity {
                     JSONObject resJson = new JSONObject(resStr);
                     String accessToken = resJson.getString("access_token");
 
+                    // Guardar sesión del usuario
+                    saveUserSession(email, accessToken);
+
                     runOnUiThread(() -> {
                         errorText.setVisibility(View.GONE);
                         Toast.makeText(Login.this, "Login exitoso", Toast.LENGTH_SHORT).show();
-                        // Aquí puedes iniciar otra actividad o guardar token
+                        navigateToDashboard();
                     });
 
                 } catch (Exception e) {
@@ -127,5 +148,38 @@ public class Login extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    // Métodos para manejar la sesión
+    private void saveUserSession(String email, String accessToken) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(KEY_IS_LOGGED_IN, true);
+        editor.putString(KEY_ACCESS_TOKEN, accessToken);
+        editor.putString(KEY_USER_EMAIL, email);
+        editor.apply();
+    }
+
+    private boolean isUserLoggedIn() {
+        return sharedPreferences.getBoolean(KEY_IS_LOGGED_IN, false);
+    }
+
+    private void navigateToDashboard() {
+        Intent intent = new Intent(Login.this, Dashboard.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
+    }
+
+    // Método público para cerrar sesión (llamar desde Dashboard u otra actividad)
+    public static void logout(AppCompatActivity activity) {
+        SharedPreferences prefs = activity.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.clear();
+        editor.apply();
+
+        Intent intent = new Intent(activity, Login.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        activity.startActivity(intent);
+        activity.finish();
     }
 }
