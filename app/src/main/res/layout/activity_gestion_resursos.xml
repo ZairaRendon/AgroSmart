@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pearl">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gestión de Recursos"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/darkGreen"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monitoreo y análisis de consumo"
+            android:textSize="14sp"
+            android:textColor="#757575"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- tabs de recursos -->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayoutRecursos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            app:tabMode="fixed"
+            app:tabTextColor="#757575"
+            app:tabSelectedTextColor="@color/darkGreen"
+            app:tabIndicatorColor="@color/lightGreen"
+            app:tabIndicatorHeight="3dp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- recursos -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:layout_marginBottom="16dp">
+
+            <!-- agua -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardAgua"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="💧"
+                        android:textSize="32sp"
+                        android:layout_marginBottom="4dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Agua"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="#757575"/>
+
+                    <TextView
+                        android:id="@+id/tvAguaTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 L"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/darkGreen"
+                        android:layout_marginTop="4dp"/>
+
+                    <TextView
+                        android:id="@+id/tvAguaPromedio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 L/día"
+                        android:textSize="10sp"
+                        android:textColor="#9E9E9E"/>
+
+                    <TextView
+                        android:id="@+id/tvAguaEstado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ÓPTIMO"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- fertilizante -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardFertilizante"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🌱"
+                        android:textSize="32sp"
+                        android:layout_marginBottom="4dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fertilizante"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="#757575"/>
+
+                    <TextView
+                        android:id="@+id/tvFertilizanteTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 kg"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/darkGreen"
+                        android:layout_marginTop="4dp"/>
+
+                    <TextView
+                        android:id="@+id/tvFertilizantePromedio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 kg/día"
+                        android:textSize="10sp"
+                        android:textColor="#9E9E9E"/>
+
+                    <TextView
+                        android:id="@+id/tvFertilizanteEstado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="NORMAL"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- energía -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardEnergia"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="⚡"
+                        android:textSize="32sp"
+                        android:layout_marginBottom="4dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Energía"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="#757575"/>
+
+                    <TextView
+                        android:id="@+id/tvEnergiaTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 kWh"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/darkGreen"
+                        android:layout_marginTop="4dp"/>
+
+                    <TextView
+                        android:id="@+id/tvEnergiaPromedio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 kWh/día"
+                        android:textSize="10sp"
+                        android:textColor="#9E9E9E"/>
+
+                    <TextView
+                        android:id="@+id/tvEnergiaEstado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ALTO"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <!-- grafica consumo diario -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="3dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📈 Consumo Semanal"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/darkGreen"
+                    android:layout_marginBottom="12dp"/>
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/lineChartConsumo"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- grafica de barras comparativo diario -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="3dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📊 Comparativo Diario"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/darkGreen"
+                    android:layout_marginBottom="12dp"/>
+
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/barChartComparativo"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- grafica distribución -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="3dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🥧 Distribución por Actividad"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/darkGreen"
+                    android:layout_marginBottom="12dp"/>
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pieChartDistribucion"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- botones -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnActualizar"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="🔄 Actualizar Datos"
+                android:textSize="14sp"
+                android:backgroundTint="@color/lightGreen"
+                android:textColor="@android:color/white"
+                app:cornerRadius="12dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnExportar"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:text="📥 Exportar"
+                android:textSize="14sp"
+                android:backgroundTint="@color/darkGreen"
+                android:textColor="@android:color/white"
+                app:cornerRadius="12dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Datos actualizados en tiempo real"
+            android:textSize="12sp"
+            android:textColor="#9E9E9E"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+</ScrollView>
