@@ -24,16 +24,16 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="BarraLateral">
+      <SelectionState runConfigName="Predicciones">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="BarraLateral (1)">
+      <SelectionState runConfigName="Predicciones (1)">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="Registro">
+      <SelectionState runConfigName="GestionRecursos">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="Reportes">
+      <SelectionState runConfigName="GestionRecursos (1)">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

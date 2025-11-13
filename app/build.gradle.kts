@@ -42,4 +42,8 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("org.json:json:20240303")
+
+    //graficas
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
 }
