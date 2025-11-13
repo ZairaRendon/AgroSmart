@@ -11,7 +11,7 @@
         android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="50dp">
 
         <!-- Título -->
         <TextView
@@ -24,41 +24,7 @@
             android:textColor="#1C352D"
             android:layout_marginBottom="24dp"/>
 
-        <!-- Cultivo 1: Cebada -->
-        <ImageView
-            android:id="@+id/imgCebada"
-            android:layout_width="250dp"
-            android:layout_height="180dp"
-            android:src="@drawable/cebada"
-            android:scaleType="centerCrop"
-            android:layout_marginBottom="8dp"/>
-
-        <TextView
-            android:id="@+id/txtCebada"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cultivo de Cebada"
-            android:textSize="16sp"
-            android:textColor="#1C352D"
-            android:layout_marginBottom="24dp"/>
-
-        <!-- Cultivo 2: Trigo -->
-        <ImageView
-            android:id="@+id/imgTrigo"
-            android:layout_width="250dp"
-            android:layout_height="180dp"
-            android:src="@drawable/trigo"
-            android:scaleType="centerCrop"
-            android:layout_marginBottom="8dp"/>
-
-        <TextView
-            android:id="@+id/txtTrigo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cultivo de Trigo"
-            android:textSize="16sp"
-            android:textColor="#1C352D"
-            android:layout_marginBottom="24dp"/>
+        <!-- Los cultivos se agregarán dinámicamente aquí -->
 
         <!-- Botón Agregar Cultivo -->
         <com.google.android.material.button.MaterialButton

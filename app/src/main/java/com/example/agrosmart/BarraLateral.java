@@ -38,17 +38,25 @@ public class BarraLateral extends AppCompatActivity {
         });
 
         // Otras secciones (todavía sin implementación)
-        btnCuenta.setOnClickListener(v ->
-                mostrarMensaje("Abrir sección de Cuenta"));
+        btnCuenta.setOnClickListener(v -> {
+            Intent intent = new Intent(BarraLateral.this, Configuracion.class);
+            startActivity(intent);
+        });
 
         btnSensores.setOnClickListener(v ->
                 mostrarMensaje("Abrir sección de Sensores"));
 
-        btnPredicciones.setOnClickListener(v ->
-                mostrarMensaje("Abrir Predicciones"));
 
-        btnRecursos.setOnClickListener(v ->
-                mostrarMensaje("Abrir Recursos"));
+        btnPredicciones.setOnClickListener(v -> {
+            Intent intent = new Intent(BarraLateral.this, Predicciones.class);
+            startActivity(intent);
+        });
+
+
+        btnRecursos.setOnClickListener(v ->{
+            Intent intent = new Intent(BarraLateral.this, GestionRecursos.class);
+            startActivity(intent);
+        });
     }
 
     // Método auxiliar para mostrar mensajes rápidos
