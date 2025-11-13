@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_verde_beige"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <!-- Título -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Agregar Nuevo Cultivo"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#1C352D"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Nombre del Cultivo -->
+        <EditText
+            android:id="@+id/edtNombreCultivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre del cultivo"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="16dp"
+            android:padding="12dp"
+            android:background="@drawable/custom_edittext" />
+
+        <!-- Fecha de Inicio -->
+        <EditText
+            android:id="@+id/edtFechaInicio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fecha de inicio (dd/mm/aaaa)"
+            android:inputType="date"
+            android:layout_marginBottom="16dp"
+            android:padding="12dp"
+            android:background="@drawable/custom_edittext" />
+
+        <!-- Fecha de Término -->
+        <EditText
+            android:id="@+id/edtFechaTermino"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fecha de término (dd/mm/aaaa)"
+            android:inputType="date"
+            android:layout_marginBottom="24dp"
+            android:padding="12dp"
+            android:background="@drawable/custom_edittext" />
+
+        <!-- Botón Guardar -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGuardarCultivo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guardar"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#1C352D"
+            app:cornerRadius="12dp"
+            android:paddingHorizontal="32dp"
+            android:paddingVertical="12dp" />
+
+    </LinearLayout>
+</ScrollView>

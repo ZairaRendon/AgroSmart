@@ -1,8 +1,8 @@
-package com.example.agrosmart; // 👈 usa tu paquete real
+package com.example.agrosmart;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.button.MaterialButton;
 
@@ -14,8 +14,9 @@ public class BarraLateral extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.barra_lateral); // 👈 tu layout XML
+        setContentView(R.layout.barra_lateral);
 
+        // Vincular vistas
         imgUsuario = findViewById(R.id.imgUsuario);
         btnCuenta = findViewById(R.id.btnCuenta);
         btnSensores = findViewById(R.id.btnSensores);
@@ -24,23 +25,34 @@ public class BarraLateral extends AppCompatActivity {
         btnCultivos = findViewById(R.id.btnCultivos);
         btnReportes = findViewById(R.id.btnReportes);
 
-        // 👇 Ejemplos de acciones al presionar botones
+        // 👉 Abrir Cultivos
+        btnCultivos.setOnClickListener(v -> {
+            Intent intent = new Intent(BarraLateral.this, CultivoActivity.class);
+            startActivity(intent);
+        });
+
+        // 👉 Abrir Reportes
+        btnReportes.setOnClickListener(v -> {
+            Intent intent = new Intent(BarraLateral.this, Reportes.class);
+            startActivity(intent);
+        });
+
+        // Otras secciones (todavía sin implementación)
         btnCuenta.setOnClickListener(v ->
-                Toast.makeText(this, "Abrir sección de Cuenta", Toast.LENGTH_SHORT).show());
+                mostrarMensaje("Abrir sección de Cuenta"));
 
         btnSensores.setOnClickListener(v ->
-                Toast.makeText(this, "Abrir sección de Sensores", Toast.LENGTH_SHORT).show());
+                mostrarMensaje("Abrir sección de Sensores"));
 
         btnPredicciones.setOnClickListener(v ->
-                Toast.makeText(this, "Abrir Predicciones", Toast.LENGTH_SHORT).show());
+                mostrarMensaje("Abrir Predicciones"));
 
         btnRecursos.setOnClickListener(v ->
-                Toast.makeText(this, "Abrir Recursos", Toast.LENGTH_SHORT).show());
+                mostrarMensaje("Abrir Recursos"));
+    }
 
-        btnCultivos.setOnClickListener(v ->
-                Toast.makeText(this, "Abrir Cultivos", Toast.LENGTH_SHORT).show());
-
-        btnReportes.setOnClickListener(v ->
-                Toast.makeText(this, "Abrir Reportes", Toast.LENGTH_SHORT).show());
+    // Método auxiliar para mostrar mensajes rápidos
+    private void mostrarMensaje(String mensaje) {
+        android.widget.Toast.makeText(this, mensaje, android.widget.Toast.LENGTH_SHORT).show();
     }
 }

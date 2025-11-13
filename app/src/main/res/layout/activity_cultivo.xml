@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_verde_beige">
+
+    <LinearLayout
+        android:id="@+id/linearLayoutCultivos"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/txtTituloCultivos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gestión de Cultivos"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#1C352D"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Cultivo 1: Cebada -->
+        <ImageView
+            android:id="@+id/imgCebada"
+            android:layout_width="250dp"
+            android:layout_height="180dp"
+            android:src="@drawable/cebada"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/txtCebada"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cultivo de Cebada"
+            android:textSize="16sp"
+            android:textColor="#1C352D"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Cultivo 2: Trigo -->
+        <ImageView
+            android:id="@+id/imgTrigo"
+            android:layout_width="250dp"
+            android:layout_height="180dp"
+            android:src="@drawable/trigo"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/txtTrigo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cultivo de Trigo"
+            android:textSize="16sp"
+            android:textColor="#1C352D"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Botón Agregar Cultivo -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAgregarCultivo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Agregar Cultivo"
+            android:textColor="#FFFFFF"
+            app:cornerRadius="12dp"
+            android:backgroundTint="#1C352D"
+            android:layout_marginTop="16dp"/>
+
+    </LinearLayout>
+</ScrollView>

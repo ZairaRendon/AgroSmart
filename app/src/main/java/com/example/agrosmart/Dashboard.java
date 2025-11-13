@@ -2,54 +2,88 @@ package com.example.agrosmart;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.button.MaterialButton;
 
 public class Dashboard extends AppCompatActivity {
 
     private TextView txtBienvenida;
-    private Button btnCultivos, btnSensores, btnAlertas;
+    private MaterialButton btnCultivos, btnSensores, btnAlertas, btnMenu;
+    private DrawerLayout drawerLayout;
+
+    // Botones del menú lateral
+    private Button btnCuenta, btnSensoresLateral, btnPredicciones, btnRecursos, btnCultivosLateral, btnReportes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        // Vincular vistas
+        // Vincular vistas principales
         txtBienvenida = findViewById(R.id.txtBienvenida);
         btnCultivos = findViewById(R.id.btnCultivos);
         btnSensores = findViewById(R.id.btnSensores);
         btnAlertas = findViewById(R.id.btnAlertas);
+        btnMenu = findViewById(R.id.btnMenu);
+        drawerLayout = findViewById(R.id.drawer_layout);
 
-        // mensaje de bienvenida
-        txtBienvenida.setText("Bienvenido a AgroSmart ");
+        // Vincular botones de la barra lateral (usa los IDs de barra_lateral.xml)
+        btnCuenta = findViewById(R.id.btnCuenta);
+        btnSensoresLateral = findViewById(R.id.btnSensores);
+        btnPredicciones = findViewById(R.id.btnPredicciones);
+        btnRecursos = findViewById(R.id.btnRecursos);
+        btnCultivosLateral = findViewById(R.id.btnCultivos);
+        btnReportes = findViewById(R.id.btnReportes);
 
-        //   botones
-        btnCultivos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Aquí para la pantalla de cultivos
-                // startActivity(new Intent(Dashboard.this, CultivosActivity.class));
+        // Mensaje de bienvenida
+        txtBienvenida.setText("Bienvenido a AgroSmart");
+
+        // ---------- Botones principales ----------
+        btnCultivos.setOnClickListener(v -> {
+            Intent intent = new Intent(Dashboard.this, Cultivo.class);
+            startActivity(intent);
+        });
+
+        btnSensores.setOnClickListener(v -> {
+            // startActivity(new Intent(Dashboard.this, SensoresActivity.class));
+        });
+
+        btnAlertas.setOnClickListener(v -> {
+            // startActivity(new Intent(Dashboard.this, AlertasActivity.class));
+        });
+
+        // ---------- Menú lateral ----------
+        btnMenu.setOnClickListener(v -> {
+            if (drawerLayout.isDrawerOpen(findViewById(R.id.barra_lateral_root))) {
+                drawerLayout.closeDrawer(findViewById(R.id.barra_lateral_root));
+            } else {
+                drawerLayout.openDrawer(findViewById(R.id.barra_lateral_root));
             }
         });
 
-        btnSensores.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Aquí para abrir la pantalla de sensores
-                // startActivity(new Intent(Dashboard.this, SensoresActivity.class));
-            }
+        // Cultivos → abre la vista cultivo.java
+        btnCultivosLateral.setOnClickListener(v -> {
+            Intent intent = new Intent(Dashboard.this, CultivoActivity.class);
+            startActivity(intent);
+            drawerLayout.closeDrawer(findViewById(R.id.barra_lateral_root));
         });
 
-        btnAlertas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Aquí para abrir  la pantalla de alertas
-                // startActivity(new Intent(Dashboard.this, AlertasActivity.class));
-            }
+        // Reportes → abre la vista Reportes.java
+        btnReportes.setOnClickListener(v -> {
+            Intent intent = new Intent(Dashboard.this, Reportes.class);
+            startActivity(intent);
+            drawerLayout.closeDrawer(findViewById(R.id.barra_lateral_root));
         });
+
+        // Opcional: botones restantes pueden mostrar mensajes o abrir otras vistas
+        btnCuenta.setOnClickListener(v -> {});
+        btnSensoresLateral.setOnClickListener(v -> {});
+        btnPredicciones.setOnClickListener(v -> {});
+        btnRecursos.setOnClickListener(v -> {});
     }
 }
