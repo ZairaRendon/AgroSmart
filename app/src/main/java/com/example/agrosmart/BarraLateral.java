@@ -43,9 +43,10 @@ public class BarraLateral extends AppCompatActivity {
             startActivity(intent);
         });
 
-        btnSensores.setOnClickListener(v ->
-                mostrarMensaje("Abrir sección de Sensores"));
-
+        btnSensores.setOnClickListener(v ->{
+            Intent intent = new Intent(BarraLateral.this, Sensores.class);
+            startActivity(intent);
+        });
 
         btnPredicciones.setOnClickListener(v -> {
             Intent intent = new Intent(BarraLateral.this, Predicciones.class);

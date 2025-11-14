@@ -80,48 +80,44 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Botones -->
+        <!-- Botones de gestión de sensores -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="3"
+            android:weightSum="2"
             android:layout_marginBottom="16dp">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnActualizarSensores"
+                android:id="@+id/btnAgregarSensor"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:layout_marginEnd="4dp"
-                android:text="🔄 Actualizar"
-                android:textSize="12sp"
-                android:backgroundTint="@color/lightGreen"
+                android:text="➕ Agregar Sensor"
+                android:textSize="13sp"
+                android:backgroundTint="#4CAF50"
                 android:textColor="@android:color/white"
-                app:cornerRadius="8dp"/>
+                app:cornerRadius="8dp"
+                app:icon="@android:drawable/ic_input_add"
+                app:iconGravity="textStart"
+                app:iconTint="@android:color/white"/>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnHistorial"
+                android:id="@+id/btnEliminarSensor"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:layout_marginEnd="4dp"
-                android:text="📊 Historial"
-                android:textSize="12sp"
-                android:backgroundTint="@color/darkGreen"
+                android:layout_marginStart="4dp"
+                android:text="🗑️ Eliminar Sensor"
+                android:textSize="13sp"
+                android:backgroundTint="#F44336"
                 android:textColor="@android:color/white"
-                app:cornerRadius="8dp"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnAlertas"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:text="🔔 Alertas"
-                android:textSize="12sp"
-                android:backgroundTint="#FF9800"
-                android:textColor="@android:color/white"
-                app:cornerRadius="8dp"/>
+                app:cornerRadius="8dp"
+                app:icon="@android:drawable/ic_menu_delete"
+                app:iconGravity="textStart"
+                app:iconTint="@android:color/white"
+                android:enabled="false"/>
         </LinearLayout>
 
         <!-- Lecturas actuales -->
@@ -149,7 +145,8 @@
             android:textSize="11sp"
             android:textColor="#9E9E9E"
             android:layout_gravity="center"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"/>
 
     </LinearLayout>
 </ScrollView>

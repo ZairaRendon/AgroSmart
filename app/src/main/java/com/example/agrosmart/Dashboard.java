@@ -88,7 +88,11 @@ public class Dashboard extends AppCompatActivity {
             startActivity(intent);
             drawerLayout.closeDrawer(findViewById(R.id.barra_lateral_root));
         });
-        btnSensoresLateral.setOnClickListener(v -> {});
+        btnSensoresLateral.setOnClickListener(v -> {
+            Intent intent = new Intent(Dashboard.this, Sensores.class);
+            startActivity(intent);
+            drawerLayout.closeDrawer(findViewById(R.id.barra_lateral_root));
+        });
         btnPredicciones.setOnClickListener(v -> {
             Intent intent = new Intent(Dashboard.this, Predicciones.class);
             startActivity(intent);
