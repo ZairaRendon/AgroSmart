@@ -26,9 +26,9 @@ public class Dashboard extends AppCompatActivity {
 
         // Vincular vistas principales
         txtBienvenida = findViewById(R.id.txtBienvenida);
-        btnCultivos = findViewById(R.id.btnCultivos);
-        btnSensores = findViewById(R.id.btnSensores);
-        btnAlertas = findViewById(R.id.btnAlertas);
+        btnCultivos = findViewById(R.id.btn1Cultivos);
+        btnSensores = findViewById(R.id.btn1Sensores);
+        btnAlertas = findViewById(R.id.btn1Predicciones);
         btnMenu = findViewById(R.id.btnMenu);
         drawerLayout = findViewById(R.id.drawer_layout);
 
@@ -50,11 +50,13 @@ public class Dashboard extends AppCompatActivity {
         });
 
         btnSensores.setOnClickListener(v -> {
-            // startActivity(new Intent(Dashboard.this, SensoresActivity.class));
+            Intent intent = new Intent(Dashboard.this, Sensores.class);
+            startActivity(intent);
         });
 
         btnAlertas.setOnClickListener(v -> {
-            // startActivity(new Intent(Dashboard.this, AlertasActivity.class));
+            Intent intent = new Intent(Dashboard.this, Predicciones.class);
+            startActivity(intent);
         });
 
         // ---------- Menú lateral ----------
@@ -68,7 +70,7 @@ public class Dashboard extends AppCompatActivity {
 
         // Cultivos → abre la vista cultivo.java
         btnCultivosLateral.setOnClickListener(v -> {
-            Intent intent = new Intent(Dashboard.this, CultivoActivity.class);
+            Intent intent = new Intent(Dashboard.this, Cultivo.class);
             startActivity(intent);
             drawerLayout.closeDrawer(findViewById(R.id.barra_lateral_root));
         });
@@ -81,9 +83,21 @@ public class Dashboard extends AppCompatActivity {
         });
 
         // Opcional: botones restantes pueden mostrar mensajes o abrir otras vistas
-        btnCuenta.setOnClickListener(v -> {});
+        btnCuenta.setOnClickListener(v -> {
+            Intent intent = new Intent(Dashboard.this, Configuracion.class);
+            startActivity(intent);
+            drawerLayout.closeDrawer(findViewById(R.id.barra_lateral_root));
+        });
         btnSensoresLateral.setOnClickListener(v -> {});
-        btnPredicciones.setOnClickListener(v -> {});
-        btnRecursos.setOnClickListener(v -> {});
+        btnPredicciones.setOnClickListener(v -> {
+            Intent intent = new Intent(Dashboard.this, Predicciones.class);
+            startActivity(intent);
+            drawerLayout.closeDrawer(findViewById(R.id.barra_lateral_root));
+        });
+        btnRecursos.setOnClickListener(v -> {
+            Intent intent = new Intent(Dashboard.this, GestionRecursos.class);
+            startActivity(intent);
+            drawerLayout.closeDrawer(findViewById(R.id.barra_lateral_root));
+        });
     }
 }

@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import okhttp3.*;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -43,11 +44,13 @@ public class Login extends AppCompatActivity {
         // Inicializar SharedPreferences
         sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
-        // Verificar si el usuario ya está logueado
+        // 🔸 Esta parte se comenta para que NO recuerde la sesión automáticamente
+        /*
         if (isUserLoggedIn()) {
             navigateToDashboard();
             return;
         }
+        */
 
         setContentView(R.layout.activity_login);
 
@@ -132,16 +135,40 @@ public class Login extends AppCompatActivity {
                     JSONObject resJson = new JSONObject(resStr);
                     String accessToken = resJson.getString("access_token");
 
-                    // Guardar sesión del usuario
-                    saveUserSession(email, accessToken);
+                    // Obtener información del usuario
+                    JSONObject user = resJson.getJSONObject("user");
+                    String userId = user.getString("id");
+                    String userEmail = user.getString("email");
+
+                    // Intentar obtener el nombre desde user_metadata
+                    String userName = userEmail; // Por defecto usamos el email
+
+                    if (user.has("user_metadata")) {
+                        JSONObject metadata = user.getJSONObject("user_metadata");
+                        if (metadata.has("nombre")) {
+                            userName = metadata.getString("nombre");
+                        } else if (metadata.has("full_name")) {
+                            userName = metadata.getString("full_name");
+                        }
+                    }
+
+                    // Guardar sesión con todos los datos
+                    String finalUserName = userName;
+                    String finalUserId = userId;
 
                     runOnUiThread(() -> {
+                        saveUserSession(userEmail, accessToken, finalUserName, finalUserId);
                         errorText.setVisibility(View.GONE);
                         Toast.makeText(Login.this, "Login exitoso", Toast.LENGTH_SHORT).show();
+
+                        // Intentar obtener más datos del usuario desde la base de datos
+                        getUserDataFromDatabase(finalUserId, accessToken);
+
                         navigateToDashboard();
                     });
 
                 } catch (Exception e) {
+                    e.printStackTrace();
                     runOnUiThread(() ->
                             Toast.makeText(Login.this, "Error procesando respuesta", Toast.LENGTH_SHORT).show()
                     );
@@ -150,13 +177,86 @@ public class Login extends AppCompatActivity {
         });
     }
 
+    // Método para obtener datos adicionales del usuario desde tu tabla de usuarios
+    private void getUserDataFromDatabase(String userId, String accessToken) {
+        // Ajusta el nombre de tu tabla según tu base de datos
+        String url = SUPABASE_URL + "/rest/v1/usuarios?id=eq." + userId;
+
+        Request request = new Request.Builder()
+                .url(url)
+                .get()
+                .addHeader("apikey", SUPABASE_API_KEY)
+                .addHeader("Authorization", "Bearer " + accessToken)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                // No es crítico si falla, ya tenemos datos básicos
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String resStr = response.body().string();
+                    try {
+                        JSONArray array = new JSONArray(resStr);
+                        if (array.length() > 0) {
+                            JSONObject usuario = array.getJSONObject(0);
+
+                            // Obtener datos adicionales si existen
+                            String nombre = usuario.optString("nombre", "");
+                            String apellido = usuario.optString("apellido", "");
+                            String telefono = usuario.optString("telefono", "");
+
+                            String nombreCompleto = nombre;
+                            if (!apellido.isEmpty()) {
+                                nombreCompleto = nombre + " " + apellido;
+                            }
+
+                            String finalNombreCompleto = nombreCompleto;
+
+                            runOnUiThread(() -> {
+                                // Actualizar SharedPreferences con el nombre completo
+                                SharedPreferences userPrefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = userPrefs.edit();
+                                if (!finalNombreCompleto.isEmpty()) {
+                                    editor.putString("nombre_usuario", finalNombreCompleto);
+                                }
+                                if (!telefono.isEmpty()) {
+                                    editor.putString("telefono_usuario", telefono);
+                                }
+                                editor.apply();
+                            });
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
+
     // Métodos para manejar la sesión
-    private void saveUserSession(String email, String accessToken) {
+    private void saveUserSession(String email, String accessToken, String nombre, String userId) {
+        // Guardar en AgroSmartPrefs
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(KEY_IS_LOGGED_IN, true);
         editor.putString(KEY_ACCESS_TOKEN, accessToken);
         editor.putString(KEY_USER_EMAIL, email);
+        editor.putString("nombre_usuario", nombre);
+        editor.putString("id_usuario", userId);
         editor.apply();
+
+        // También guardar en UserPrefs para que lo use Configuracion
+        SharedPreferences userPrefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor userEditor = userPrefs.edit();
+        userEditor.putString("nombre_usuario", nombre);
+        userEditor.putString("id_usuario", userId);
+        userEditor.putString("email_usuario", email);
+        userEditor.putString("access_token", accessToken);
+        userEditor.apply();
     }
 
     private boolean isUserLoggedIn() {
@@ -172,10 +272,16 @@ public class Login extends AppCompatActivity {
 
     // Método público para cerrar sesión (llamar desde Dashboard u otra actividad)
     public static void logout(AppCompatActivity activity) {
+        // Limpiar ambos SharedPreferences
         SharedPreferences prefs = activity.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.clear();
         editor.apply();
+
+        SharedPreferences userPrefs = activity.getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor userEditor = userPrefs.edit();
+        userEditor.clear();
+        userEditor.apply();
 
         Intent intent = new Intent(activity, Login.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
